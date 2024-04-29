@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Flip from './components/Flip';
+import Flip from './Flip';
 
 
 const root = ReactDOM.createRoot(
