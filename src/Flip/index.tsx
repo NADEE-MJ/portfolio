@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import ReactFlipCard from 'reactjs-flip-card';
-import './Flip.css';  // Import your CSS for styling
+import './Flip.css';
 
 interface CardProps {
   content: ReactElement | null;
@@ -15,19 +15,43 @@ const Card: React.FC<CardProps> = ({ content }) => {
 interface CardBodyProps {
   header: ReactElement;
   body: ReactElement;
-  body2: ReactElement | null;
+  body2?: ReactElement;
   footer: ReactElement;
+  bracketColor?: string;
 }
 
-const CardBody: React.FC<CardBodyProps> = ({ header, body, body2, footer }) => {
-  return (
-    <div>
-      {header}
-      <main>
+const CardBody: React.FC<CardBodyProps> = ({ header, body, body2, footer, bracketColor }) => {
+  const style: React.CSSProperties & { '--bracket-color': string } | {} = bracketColor ? {
+    '--bracket-color': bracketColor
+  } : {};
+
+  let main: ReactElement | null = null;
+
+  if (body2) {
+    main = <div style={{ display: "grid", gridTemplateColumns: "75% 20%", gap: "5%", height: "100%", width: "100%" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         {body}
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         {body2}
-      </main>
-      {footer}
+      </div>
+    </div>
+  } else {
+    main = <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      {body}
+    </div>
+  }
+
+
+  return (
+    <div className="bracket-container" style={style}>
+      <div className="content-container">
+        <div style={{ display: "grid", gridTemplateRows: "20% 60% 20%", height: "100%", width: "100%" }}>
+          {header}
+          {main}
+          {footer}
+        </div>
+      </div>
     </div>
   );
 }
@@ -48,16 +72,16 @@ const Flip: React.FC = () => {
   const [direction, setDirection] = useState<"horizontal" | "diagonal" | "vertical">('horizontal');
 
   const headerElement = <header>
-    <h1>Welcome to My Portfolio</h1>
+    <h1>Nadeem Maida</h1>
     <nav>
       <img src="linkedin.png" alt="LinkedIn" onClick={() => handleFlip('back')} />
       <img src="github.png" alt="GitHub" onClick={() => handleFlip('back')} />
     </nav>
   </header>
 
-  const footerElement = <div>
-    <p>© 2024 Your Name</p>
-  </div>
+  const footerElement = <footer style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+    <p>© 2024 Nadeem Maida</p>
+  </footer>
 
   const projectLinks = <div>
     <button onClick={() => handleFlip('back')}>Project 1</button>
@@ -68,24 +92,21 @@ const Flip: React.FC = () => {
   const contentElements: ContentElements = {
     home: {
       direction: "horizontal", content:
-        <CardBody header={headerElement} body={<main>
+        <CardBody header={headerElement} body={<div>
+          <h1>Welcome to My Portfolio</h1>
+
           Lorem ipsum dolor sit amet, consectetur adipiscing elit
           Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-        </main>} body2={projectLinks} footer={footerElement} />
-
+        </div>} body2={projectLinks} footer={footerElement} />,
     },
     back: {
       direction: "horizontal", content:
-        <div>
-          <button onClick={() => handleFlip('home')}>Back</button>
-        </div>
+        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back</button>} footer={footerElement} bracketColor={'rgb(255, 0, 255)'} />,
     },
     third: {
       direction: "vertical", content:
-        <div>
-          <button onClick={() => handleFlip('home')}>Back to home from third</button>
-        </div>
+        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back To the Home Page</button>} footer={footerElement} bracketColor={'rgb(3, 255, 255)'} />,
     }
   }
 
@@ -110,9 +131,10 @@ const Flip: React.FC = () => {
     <div className='page-container'>
       <div className='card-container'>
         <ReactFlipCard
-          containerCss={'resizeBasedOnParent'}
+          containerCss={'resize-based-on-parent'}
           flipTrigger={"disabled"}
           flipByProp={flip}
+          flipCardCss={'transition-slow'}
           direction={direction}
           frontCss='card'
           backCss='card'
