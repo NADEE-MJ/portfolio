@@ -1,0 +1,93 @@
+.page-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* Vertical centering */
+    justify-content: center;
+    /* Horizontal centering */
+    /* height: 100vh; */
+    background-color: #041636;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    width: 50%;
+    height: 50%;
+}
+
+.resizeBasedOnParent {
+    width: 100%;
+    height: 100%;
+}
+
+/* .card-front,
+.card-back {
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+} */
+
+/* header,
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+nav img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+} */
+
+/* .flipCardExample {
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background: linear-gradient(#00b3ad, rgba(0, 255, 40, 0.41));
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.resizeBasedOnParent {
+    width: 100%;
+    height: 100%;
+}
+
+.selectable {
+    user-select: initial
+}
+
+.width200px {
+    width: 200px;
+}
+
+.widthHeightAuto {
+    height: auto;
+    width: auto;
+}
+
+.transitionDuration2s {
+    transition-duration: 2s;
+} */
