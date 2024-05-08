@@ -6,48 +6,26 @@
     align-items: center;
     justify-content: center;
     background-color: #2a2e34;
+    font-size: 1rem;
 }
 
 .card-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60%;
-    height: 60%;
+    width: 40%;
+    height: 45%;
 }
 
-.bracket-container {
+.border-container {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    --bracket-color: rgb(255, 255, 255);
-}
-
-.bracket-container::before,
-.bracket-container::after {
-    content: '';
-    position: absolute;
-    color: var(--bracket-color);
-}
-
-.bracket-container::before {
-    top: 0;
-    left: 0;
-    border-top: 0.5rem solid var(--bracket-color);
-    border-left: 0.5rem solid var(--bracket-color);
-    width: 10%;
-    height: 10%;
-}
-
-.bracket-container::after {
-    bottom: 0;
-    right: 0;
-    border-bottom: 0.5rem solid var(--bracket-color);
-    border-right: 0.5rem solid var(--bracket-color);
-    width: 10%;
-    height: 10%;
+    border-radius: 5%;
+    --border-color: rgb(255, 255, 255);
+    border: 0.2rem solid var(--border-color);
 }
 
 .content-container {
@@ -61,7 +39,7 @@
 .card {
     background: #101010;
     color: white;
-    border-radius: 2%;
+    border-radius: 5%;
 }
 
 .resize-based-on-parent {
@@ -70,9 +48,30 @@
 }
 
 .transition-slow {
-    transition-duration: 1s;
+    transition-duration: 0.7s;
 }
 
+.project-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 70%;
+}
+
+.project-links button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.project-links button:hover {
+    font-size: 2.5rem;
+}
 
 header,
 footer {
@@ -84,11 +83,18 @@ footer {
 main {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 nav img {
-    width: 24px;
-    height: 24px;
     cursor: pointer;
+    transition: 0.5s;
+}
+
+nav img:hover {
+    transform: scale(1.5);
+}
+
+img {
+    width: 100%;
+    height: auto;
 }

@@ -1,6 +1,10 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import ReactFlipCard from 'reactjs-flip-card';
 import './Flip.css';
+import GlitchText from '../GlitchText';
+import github from '../assets/github.png';
+import linkedin from '../assets/linkedin.png';
+import MJ from '../assets/MJ.png';
 
 interface CardProps {
   content: ReactElement | null;
@@ -17,12 +21,12 @@ interface CardBodyProps {
   body: ReactElement;
   body2?: ReactElement;
   footer: ReactElement;
-  bracketColor?: string;
+  borderColor?: string;
 }
 
-const CardBody: React.FC<CardBodyProps> = ({ header, body, body2, footer, bracketColor }) => {
-  const style: React.CSSProperties & { '--bracket-color': string } | {} = bracketColor ? {
-    '--bracket-color': bracketColor
+const CardBody: React.FC<CardBodyProps> = ({ header, body, body2, footer, borderColor }) => {
+  const style: React.CSSProperties & { '--border-color': string } | {} = borderColor ? {
+    '--border-color': borderColor
   } : {};
 
   let main: ReactElement | null = null;
@@ -44,7 +48,7 @@ const CardBody: React.FC<CardBodyProps> = ({ header, body, body2, footer, bracke
 
 
   return (
-    <div className="bracket-container" style={style}>
+    <div className="border-container" style={style}>
       <div className="content-container">
         <div style={{ display: "grid", gridTemplateRows: "20% 60% 20%", height: "100%", width: "100%" }}>
           {header}
@@ -71,19 +75,24 @@ const Flip: React.FC = () => {
   const [backContent, setBackContent] = useState<ReactElement | null>(null);
   const [direction, setDirection] = useState<"horizontal" | "diagonal" | "vertical">('horizontal');
 
-  const headerElement = <header>
-    <h1>Nadeem Maida</h1>
-    <nav>
-      <img src="linkedin.png" alt="LinkedIn" onClick={() => handleFlip('back')} />
-      <img src="github.png" alt="GitHub" onClick={() => handleFlip('back')} />
+  const headerElement = <header style={{ display: "grid", gridTemplateColumns: "5% 7%", columnGap: "88%" }}>
+    <img src={MJ} alt="MJ" onClick={() => handleFlip("home")} style={{ cursor: "pointer" }} />
+    <nav style={{ display: "grid", gridTemplateColumns: "40% 40%", columnGap: "20%" }}>
+      <a href="https://www.linkedin.com/in/nadeem-maida-29a4b11a1" >
+        <img src={linkedin} alt="LinkedIn" />
+      </a>
+      <a href="https://github.com/NADEE-MJ" >
+
+        <img src={github} alt="GitHub" />
+      </a>
     </nav>
-  </header>
+  </header >
 
   const footerElement = <footer style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
     <p>© 2024 Nadeem Maida</p>
   </footer>
 
-  const projectLinks = <div>
+  const projectLinks = <div className='project-links'>
     <button onClick={() => handleFlip('back')}>Project 1</button>
     <button onClick={() => handleFlip('third')}>Project 2</button>
     <button onClick={() => handleFlip('back')}>Project 3</button>
@@ -93,20 +102,24 @@ const Flip: React.FC = () => {
     home: {
       direction: "horizontal", content:
         <CardBody header={headerElement} body={<div>
-          <h1>Welcome to My Portfolio</h1>
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+          <GlitchText text="WELCOME" />
+          <p>
+            Hello! I'm Nadeem Maida, a full-stack web developer based in Southern California.
+            My experience spans various web technology stacks, and I'm continually driven to expand my expertise.
+          </p>
+          <br />
+          <p>
+            Currently, I'm delving into the realms of low-level and systems programming, with a keen interest in mastering Rust and C.
+          </p>
         </div>} body2={projectLinks} footer={footerElement} />,
     },
     back: {
       direction: "horizontal", content:
-        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back</button>} footer={footerElement} bracketColor={'rgb(255, 0, 255)'} />,
+        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back</button>} footer={footerElement} borderColor={'rgb(255, 0, 255)'} />,
     },
     third: {
       direction: "vertical", content:
-        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back To the Home Page</button>} footer={footerElement} bracketColor={'rgb(3, 255, 255)'} />,
+        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back To the Home Page</button>} footer={footerElement} borderColor={'rgb(3, 255, 255)'} />,
     }
   }
 
