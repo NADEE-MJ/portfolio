@@ -1,5 +1,4 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import ReactFlipCard from 'reactjs-flip-card';
 import './Flip.css';
 import GlitchText from '../GlitchText';
 import github from '../assets/github.png';
@@ -132,10 +131,10 @@ const Flip: React.FC = () => {
     setDirection(d => contentElements[nextContentName].direction);
     if (flip) {
       setBackContent(contentElements[nextContentName].content);
-      setFrontContent(null);
+      // setFrontContent(null);
     } else {
       setFrontContent(contentElements[nextContentName].content);
-      setBackContent(null);
+      // setBackContent(null);
     }
   }, [flip, nextContentName]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -143,23 +142,17 @@ const Flip: React.FC = () => {
   return (
     <div className='page-container'>
       <div className='card-container'>
-        <ReactFlipCard
-          containerCss={'resize-based-on-parent'}
-          flipTrigger={"disabled"}
-          flipByProp={flip}
-          flipCardCss={'transition-slow'}
-          direction={direction}
-          frontCss='card'
-          backCss='card'
-          frontComponent={
-            <Card content={frontContent} />
-          }
-          backComponent={
-            <Card content={backContent} />
-          }
-        />
+
+        <div className={`card ${flip ? 'flipped' : ''}`}>
+          <div className='card-front'>
+            {frontContent}
+          </div>
+          <div className='card-back'>
+            {backContent}
+          </div>
+        </div>
       </div>
-    </div>
+    </div >
   );
 };
 
