@@ -5,74 +5,36 @@ import github from '../assets/github.png';
 import linkedin from '../assets/linkedin.png';
 import MJ from '../assets/MJ.png';
 
-interface CardProps {
-  content: ReactElement | null;
+interface FlipCardProps {
+  frontContent: ReactElement | null;
+  backContent: ReactElement | null;
+  flip: boolean;
+  direction: "X" | "Y";
 }
 
-const Card: React.FC<CardProps> = ({ content }) => {
+const FlipCard: React.FC<FlipCardProps> = ({ frontContent, backContent, flip, direction }) => {
   return (
-    content
+    <div className={`card ${flip ? `flipped${direction}` : ''}`}>
+      <div className='card-front'>
+        {frontContent}
+      </div>
+      <div className={`card-back${direction}`}>
+        {backContent}
+      </div>
+    </div>
   );
 };
 
-interface CardBodyProps {
-  header: ReactElement;
+interface FlipCardBodyProps {
   body: ReactElement;
-  body2?: ReactElement;
-  footer: ReactElement;
   borderColor?: string;
+  handleFlip: (contentName: string) => void;
 }
 
-const CardBody: React.FC<CardBodyProps> = ({ header, body, body2, footer, borderColor }) => {
+const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFlip }) => {
   const style: React.CSSProperties & { '--border-color': string } | {} = borderColor ? {
     '--border-color': borderColor
   } : {};
-
-  let main: ReactElement | null = null;
-
-  if (body2) {
-    main = <div style={{ display: "grid", gridTemplateColumns: "75% 20%", gap: "5%", height: "100%", width: "100%" }}>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        {body}
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        {body2}
-      </div>
-    </div>
-  } else {
-    main = <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-      {body}
-    </div>
-  }
-
-
-  return (
-    <div className="border-container" style={style}>
-      <div className="content-container">
-        <div style={{ display: "grid", gridTemplateRows: "20% 60% 20%", height: "100%", width: "100%" }}>
-          {header}
-          {main}
-          {footer}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-interface ContentElements {
-  [key: string]: {
-    direction: "horizontal" | "diagonal" | "vertical";
-    content: ReactElement;
-  }
-}
-
-const Flip: React.FC = () => {
-  const [flip, setFlip] = useState(false);
-  const [nextContentName, setNextContentName] = useState<string>("home");
-  const [frontContent, setFrontContent] = useState<ReactElement | null>(null);
-  const [backContent, setBackContent] = useState<ReactElement | null>(null);
-  const [direction, setDirection] = useState<"horizontal" | "diagonal" | "vertical">('horizontal');
 
   const headerElement = <header style={{ display: "grid", gridTemplateColumns: "5% 7%", columnGap: "88%" }}>
     <img src={MJ} alt="MJ" onClick={() => handleFlip("home")} style={{ cursor: "pointer" }} />
@@ -97,10 +59,49 @@ const Flip: React.FC = () => {
     <button onClick={() => handleFlip('back')}>Project 3</button>
   </div>
 
+  return (
+    <div className="border-container" style={style}>
+      <div className="content-container">
+        <div style={{ display: "grid", gridTemplateRows: "20% 60% 20%", height: "100%", width: "100%" }}>
+          {headerElement}
+          <div style={{ display: "grid", gridTemplateColumns: "75% 20%", gap: "5%", height: "100%", width: "100%" }}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              {body}
+            </div>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              {projectLinks}
+            </div>
+          </div>
+          {footerElement}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface ContentElements {
+  [key: string]: {
+    direction: "X" | "Y";
+    content: ReactElement;
+  }
+}
+
+const Flip: React.FC = () => {
+  const [flip, setFlip] = useState(false);
+  const [nextContentName, setNextContentName] = useState<string>("home");
+  const [frontContent, setFrontContent] = useState<ReactElement | null>(null);
+  const [backContent, setBackContent] = useState<ReactElement | null>(null);
+  const [direction, setDirection] = useState<"X" | "Y">('X');
+
+  const handleFlip = (contentName: string) => {
+    setFlip(flip => !flip);
+    setNextContentName(contentName);
+  };
+
   const contentElements: ContentElements = {
     home: {
-      direction: "horizontal", content:
-        <CardBody header={headerElement} body={<div>
+      direction: "Y", content:
+        <FlipCardBody body={<div>
           <GlitchText text="WELCOME" />
           <p>
             Hello! I'm Nadeem Maida, a full-stack web developer based in Southern California.
@@ -110,31 +111,24 @@ const Flip: React.FC = () => {
           <p>
             Currently, I'm delving into the realms of low-level and systems programming, with a keen interest in mastering Rust and C.
           </p>
-        </div>} body2={projectLinks} footer={footerElement} />,
+        </div>} handleFlip={handleFlip} />,
     },
     back: {
-      direction: "horizontal", content:
-        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back</button>} footer={footerElement} borderColor={'rgb(255, 0, 255)'} />,
+      direction: "Y", content:
+        <FlipCardBody body={<button onClick={() => handleFlip('home')}>Back</button>} handleFlip={handleFlip} borderColor={'#B000B5'} />,
     },
     third: {
-      direction: "vertical", content:
-        <CardBody header={headerElement} body={<button onClick={() => handleFlip('home')}>Back To the Home Page</button>} footer={footerElement} borderColor={'rgb(3, 255, 255)'} />,
+      direction: "X", content:
+        <FlipCardBody body={<button onClick={() => handleFlip('home')}>Back To the Home Page</button>} handleFlip={handleFlip} borderColor={'#10ADED'} />,
     }
   }
 
-  const handleFlip = (contentName: string) => {
-    setFlip(flip => !flip);
-    setNextContentName(contentName);
-  };
-
   useEffect(() => {
-    setDirection(d => contentElements[nextContentName].direction);
     if (flip) {
+      setDirection(d => contentElements[nextContentName].direction);
       setBackContent(contentElements[nextContentName].content);
-      // setFrontContent(null);
     } else {
       setFrontContent(contentElements[nextContentName].content);
-      // setBackContent(null);
     }
   }, [flip, nextContentName]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -142,15 +136,7 @@ const Flip: React.FC = () => {
   return (
     <div className='page-container'>
       <div className='card-container'>
-
-        <div className={`card ${flip ? 'flipped' : ''}`}>
-          <div className='card-front'>
-            {frontContent}
-          </div>
-          <div className='card-back'>
-            {backContent}
-          </div>
-        </div>
+        <FlipCard frontContent={frontContent} backContent={backContent} flip={flip} direction={direction} />
       </div>
     </div >
   );
