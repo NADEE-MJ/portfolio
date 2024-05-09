@@ -37,7 +37,7 @@ const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFl
   } : {};
 
   const headerElement = <header style={{ display: "grid", gridTemplateColumns: "5% 7%", columnGap: "88%" }}>
-    <img src={MJ} alt="MJ" onClick={() => handleFlip("home")} style={{ cursor: "pointer" }} />
+    <img src={MJ} alt="MJ" onClick={() => handleFlip("home")} style={{ cursor: "pointer" }} className='logo' />
     <nav style={{ display: "grid", gridTemplateColumns: "40% 40%", columnGap: "20%" }}>
       <a href="https://www.linkedin.com/in/nadeem-maida-29a4b11a1" >
         <img src={linkedin} alt="LinkedIn" />
