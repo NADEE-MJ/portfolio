@@ -6,15 +6,17 @@
     align-items: center;
     justify-content: center;
     background-color: #2a2e34;
-    font-size: 1rem;
+    font-size: 18px;
 }
 
 .card-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
-    height: 45%;
+    width: 100%;
+    max-width: 960px;
+    height: 100%;
+    max-height: 600px;
     perspective: 1000px;
 }
 
@@ -26,7 +28,7 @@
     height: 100%;
     border-radius: 5%;
     --border-color: #FFFFFF;
-    border: 0.2rem solid var(--border-color);
+    border: 3px solid var(--border-color);
 }
 
 .content-container {
@@ -72,34 +74,59 @@
 }
 
 .project-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     height: 70%;
 }
 
 .project-links button {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 20px;
     background-color: transparent;
     border: none;
     color: white;
     cursor: pointer;
-    transition-duration: 0.5s;
+    text-decoration: underline;
+    transition-duration: 0.3s;
 }
 
 .project-links button:hover {
-    font-size: 2rem;
+    font-size: 25px;
 }
 
-header,
+.contact-link, .skills-link {
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+    transition-duration: 0.3s;
+}
+
+.contact-link:hover,
+.skills-link:hover {
+    font-size: 20px;
+}
+
+.link {
+    color: white;
+    text-decoration: underline;
+}
+
+
+
 footer {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+header{
     align-items: center;
 }
 
 nav img {
     cursor: pointer;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
 nav img:hover {
