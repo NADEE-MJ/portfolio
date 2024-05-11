@@ -5,6 +5,11 @@ interface AnimatedTextProps {
     text: string;
 }
 
+/**
+ * AnimatedText component that displays text with a drawing animation.
+ * @param text - The text to display with a drawing animation.
+ * @returns JSX element that displays text with a drawing animation.
+ */
 const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
     const drawingRef = useRef<HTMLDivElement>(null);
 

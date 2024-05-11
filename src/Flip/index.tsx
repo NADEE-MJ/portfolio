@@ -13,6 +13,14 @@ interface FlipCardProps {
   direction: "X" | "Y";
 }
 
+/**
+ * FlipCard component that displays front and back content on a card that flips on the X or Y axis.
+ * @param frontContent - The content to display on the front of the card.
+ * @param backContent - The content to display on the back of the card.
+ * @param flip - A boolean that determines if the card is flipped.
+ * @param direction - The axis on which the card flips. Can be either "X" or "Y".
+ * @returns JSX element that displays the front and back content on a card that flips on the X or Y axis.
+ */
 const FlipCard: React.FC<FlipCardProps> = ({ frontContent, backContent, flip, direction }) => {
   return (
     <div className={`card ${flip ? `flipped${direction}` : ''}`}>
@@ -34,6 +42,13 @@ interface FlipCardBodyProps {
   handleFlip: (contentName: ContentNames) => void;
 }
 
+/**
+ * FlipCardBody component that displays the body content of the card.
+ * @param body - The body content to display on the card.
+ * @param borderColor - The color of the border around the card.
+ * @param handleFlip - A function that flips the card to a different content.
+ * @returns JSX element that displays the body content of the card.
+ */
 const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFlip }) => {
   const style: React.CSSProperties & { '--border-color': string } | {} = borderColor ? {
     '--border-color': borderColor
@@ -97,6 +112,10 @@ interface ContentElements {
   }
 }
 
+/**
+ * Flip component that displays a card with front and back content that flips on the X or Y axis.
+ * @returns JSX element that displays a card with front and back content that flips on the X or Y axis.
+ */
 const Flip: React.FC = () => {
   const [flip, setFlip] = useState(false);
   const [nextContentName, setNextContentName] = useState<string>("home");

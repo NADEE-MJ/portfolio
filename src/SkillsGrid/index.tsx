@@ -27,6 +27,12 @@ const skills: Skill[] = [
     { name: 'FastAPI', image: fastapiLogo, link: 'https://fastapi.tiangolo.com/' },
 ];
 
+/**
+ * SkillsGrid component that displays a grid of skills with logos and links.
+ * @returns JSX element that displays a grid of skills with logos and links.
+ * @example
+ * <SkillsGrid />
+ */
 const SkillsGrid: React.FC = () => {
     return (
         <div className="skills-grid">
