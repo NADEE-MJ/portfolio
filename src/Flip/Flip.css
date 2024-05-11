@@ -130,16 +130,44 @@
 /******************************************************
 * Body Section
 *******************************************************/
+.body-content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
 .resume-download-container a {
     padding: 10px 20px;
-    background-color: #0f58d5;
+    background-color: #10ADED;
     color: white;
     border-radius: 5px;
     text-decoration: none;
 }
 
 .resume-download-container a:hover {
-    background-color: #062e73;
+    background-color: #257392;
+}
+
+.email-button {
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+    transition-duration: 0.3s;
+}
+
+.email-button:hover {
+    transform: scale(1.05);
+}
+
+.split-download-button {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    align-items: center;
 }
 
 /******************************************************

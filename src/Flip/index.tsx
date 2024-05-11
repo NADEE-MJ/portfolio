@@ -112,7 +112,7 @@ const Flip: React.FC = () => {
   const contentElements: ContentElements = {
     home: {
       direction: "Y", content:
-        <FlipCardBody body={<div>
+        <FlipCardBody body={<div className="body-content">
           <DrawnText text={"WELCOME!"} />
           <p>
             Hello! I'm Nadeem Maida, a full-stack web developer based in Southern California.
@@ -123,7 +123,7 @@ const Flip: React.FC = () => {
     },
     reft: {
       direction: "Y", content:
-        <FlipCardBody body={<div>
+        <FlipCardBody body={<div className="body-content">
           <h1>rEFT</h1>
 
           <p>
@@ -140,7 +140,7 @@ const Flip: React.FC = () => {
     },
     peppermint: {
       direction: "Y", content:
-        <FlipCardBody body={<div>
+        <FlipCardBody body={<div className="body-content">
           <h1>peppermint</h1>
 
           <p>
@@ -153,11 +153,11 @@ const Flip: React.FC = () => {
           <a href='https://github.com/NADEE-MJ/peppermint'>
             <button className='link'>github</button>
           </a>
-        </div>} handleFlip={handleFlip} borderColor={'#10ADED'} />,
+        </div>} handleFlip={handleFlip} borderColor={'#9E091E'} />,
     },
     zsh: {
       direction: "Y", content:
-        <FlipCardBody body={<div>
+        <FlipCardBody body={<div className="body-content">
           <h1>zsh</h1>
 
           <p>
@@ -174,17 +174,29 @@ const Flip: React.FC = () => {
     },
     contact: {
       direction: "X", content:
-        <FlipCardBody body={<div>
-          <div className="resume-download-container">
-            <a href="/resume.pdf" download="resume.pdf">
-              &darr; Download Resume
-            </a>
-          </div>
-        </div>} handleFlip={handleFlip} borderColor={'#FF0000'} />,
+        <FlipCardBody body={
+          <div className="body-content">
+            <h1>Contact Me</h1>
+            <p>If you're interested in working together or just want to say hi, don't hesitate to reach out!</p>
+            <div className='split-download-button'>
+              <div className='body-content'>
+                <span>Email:</span>
+                <a href="mailto:nadeem.maida@gmail.com"><button className='email-button'>nadeem.maida@gmail.com</button></a>
+                <br />
+                <span>Phone:</span>
+                <span>(714) 555-1234</span>
+              </div>
+              <div className="resume-download-container">
+                <a href="/resume.pdf" download="resume.pdf">
+                  &darr; Download Resume
+                </a>
+              </div>
+            </div>
+          </div>} handleFlip={handleFlip} borderColor={'#10ADED'} />,
     },
     skills: {
       direction: "X", content:
-        <FlipCardBody body={<SkillsGrid />} handleFlip={handleFlip} borderColor={'#00FF00'} />,
+        <FlipCardBody body={<SkillsGrid />} handleFlip={handleFlip} borderColor={'#111135'} />,
     }
   }
 
