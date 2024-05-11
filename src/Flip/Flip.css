@@ -1,3 +1,7 @@
+/******************************************************
+* Containers
+*******************************************************/
+/* gets the whole page */
 .page-container {
     position: fixed;
     width: 100%;
@@ -9,6 +13,7 @@
     font-size: 18px;
 }
 
+/* sets the card size */
 .card-container {
     display: flex;
     align-items: center;
@@ -20,6 +25,7 @@
     perspective: 1000px;
 }
 
+/* controls the cards border, change --border-color to change the color */
 .border-container {
     display: flex;
     align-items: center;
@@ -31,10 +37,40 @@
     border: 3px solid var(--border-color);
 }
 
+/* controls the size the content inside the card can take up */
 .content-container {
     width: 95%;
     height: 95%;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
 }
+
+/* splits the body up into two sections */
+.body-container {
+    display: grid;
+    grid-template-columns: 75% 20%;
+    column-gap: 5%;
+    height: 100%;
+    width: 100%;
+}
+
+.left-body-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.right-body-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/******************************************************
+* Card, this is how the card flipping is done
+*******************************************************/
 
 .card {
     width: 100%;
@@ -73,73 +109,94 @@
     transform: rotateX(180deg);
 }
 
+/******************************************************
+* Links
+*******************************************************/
+.link {
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+    transition-duration: 0.3s;
+}
+
+.link:hover {
+    transform: scale(1.2);
+}
+
+
+/******************************************************
+* Body Section
+*******************************************************/
+.resume-download-container a {
+    padding: 10px 20px;
+    background-color: #0f58d5;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.resume-download-container a:hover {
+    background-color: #062e73;
+}
+
+/******************************************************
+* Project Section
+*******************************************************/
 .project-links {
     height: 70%;
+    display: grid;
+    grid-template-rows: 40% 20% 20% 20%;
 }
 
-.project-links button {
-    font-size: 20px;
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    text-decoration: underline;
-    transition-duration: 0.3s;
+.project-links h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.project-links button:hover {
-    font-size: 25px;
+
+/******************************************************
+* Card Header
+*******************************************************/
+.card-header {
+    display: grid;
+    grid-template-columns: 5% 15% 73% 7%;
+    align-items: center;
+    height: 100%;
 }
 
-.contact-link, .skills-link {
-    font-size: 18px;
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    text-decoration: underline;
-    transition-duration: 0.3s;
+.header-links {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.contact-link:hover,
-.skills-link:hover {
-    font-size: 20px;
-}
-
-.link {
-    color: white;
-    text-decoration: underline;
+.header-logos {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 20%;
 }
 
 .logo {
     transition: 0.3s;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    height: auto;
 }
 
 .logo:hover {
     transform: scale(1.3);
 }
 
-footer {
+/******************************************************
+* Card Footer
+*******************************************************/
+.card-footer {
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-}
-
-header{
-    align-items: center;
-}
-
-nav img {
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-nav img:hover {
-    transform: scale(1.3);
-}
-
-img {
-    width: 100%;
-    height: auto;
 }

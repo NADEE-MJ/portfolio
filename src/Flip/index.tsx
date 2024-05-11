@@ -1,9 +1,10 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import './Flip.css';
 import github from '../assets/github.png';
 import linkedin from '../assets/linkedin.png';
 import MJ from '../assets/MJ.png';
 import DrawnText from '../DrawnText';
+import './Flip.css';
+import SkillsGrid from '../SkillsGrid';
 
 interface FlipCardProps {
   frontContent: ReactElement | null;
@@ -25,10 +26,12 @@ const FlipCard: React.FC<FlipCardProps> = ({ frontContent, backContent, flip, di
   );
 };
 
+type ContentNames = "home" | "reft" | "peppermint" | "zsh" | "contact" | "skills";
+
 interface FlipCardBodyProps {
   body: ReactElement;
   borderColor?: string;
-  handleFlip: (contentName: string) => void;
+  handleFlip: (contentName: ContentNames) => void;
 }
 
 const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFlip }) => {
@@ -36,48 +39,52 @@ const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFl
     '--border-color': borderColor
   } : {};
 
-  const headerElement = <header style={{ display: "grid", gridTemplateColumns: "5% 7%", columnGap: "88%" }}>
-    <img src={MJ} alt="MJ" onClick={() => handleFlip("home")} style={{ cursor: "pointer" }} className='logo' />
-    <nav style={{ display: "grid", gridTemplateColumns: "40% 40%", columnGap: "20%" }}>
+  const headerElement = (<div className='card-header'>
+    <img className='logo' src={MJ} alt="MJ" onClick={() => handleFlip("home")} />
+
+    <div className="header-links">
+      <button className='link' onClick={() => handleFlip('skills')}>skills</button>
+      <button className='link' onClick={() => handleFlip('contact')}>contact</button>
+    </div>
+    <div></div>
+    <nav className='header-logos'>
       <a href="https://www.linkedin.com/in/nadeem-maida-29a4b11a1" >
-        <img src={linkedin} alt="LinkedIn" />
+        <img className='logo' src={linkedin} alt="LinkedIn" />
       </a>
       <a href="https://github.com/NADEE-MJ" >
-
-        <img src={github} alt="GitHub" />
+        <img className='logo' src={github} alt="GitHub" />
       </a>
     </nav>
-  </header >
+  </div>);
 
-  const footerElement = <footer style={{ display: "grid", gridTemplateColumns: "62% 8% 8% 22%" }}>
-    <div></div>
-    <button onClick={() => handleFlip('contact')} className='contact-link'>contact</button>
-    <button onClick={() => handleFlip('skills')} className='skills-link'>skills</button>
+  const footerElement = (<div className='card-footer'>
     <p>© 2024 Nadeem Maida</p>
-  </footer>
+  </div>);
 
-  const projectLinks = <div className='project-links' style={{ display: "grid", gridTemplateRows: "40% 20% 20% 20%" }}>
-    <h1 style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>Projects</h1>
-    <button onClick={() => handleFlip('peppermint')}>peppermint</button>
-    <button onClick={() => handleFlip('reft')}>rEFT</button>
-    <button onClick={() => handleFlip('zsh')}>zsh</button>
-  </div>
+  const projectLinks = (<div className='project-links'>
+    <h1>Projects</h1>
+    <button className='link' onClick={() => handleFlip('peppermint')}>peppermint</button>
+    <button className='link' onClick={() => handleFlip('reft')}>rEFT</button>
+    <button className='link' onClick={() => handleFlip('zsh')}>zsh</button>
+  </div>);
 
   return (
     <div className="border-container" style={style}>
       <div className="content-container">
-        <div style={{ display: "grid", gridTemplateRows: "20% 60% 20%", height: "100%", width: "100%" }}>
+        <header>
           {headerElement}
-          <div style={{ display: "grid", gridTemplateColumns: "75% 20%", gap: "5%", height: "100%", width: "100%" }}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%", width: "100%" }}>
-              {body}
-            </div>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              {projectLinks}
-            </div>
+        </header>
+        <div className='body-container'>
+          <div className='left-body-container'>
+            {body}
           </div>
-          {footerElement}
+          <div className='right-body-container'>
+            {projectLinks}
+          </div>
         </div>
+        <footer>
+          {footerElement}
+        </footer>
       </div>
     </div>
   );
@@ -97,7 +104,7 @@ const Flip: React.FC = () => {
   const [backContent, setBackContent] = useState<ReactElement | null>(null);
   const [direction, setDirection] = useState<"X" | "Y">('X');
 
-  const handleFlip = (contentName: string) => {
+  const handleFlip = (contentName: ContentNames) => {
     setFlip(flip => !flip);
     setNextContentName(contentName);
   };
@@ -110,15 +117,13 @@ const Flip: React.FC = () => {
           <p>
             Hello! I'm Nadeem Maida, a full-stack web developer based in Southern California.
             My experience spans various web technology stacks, and I'm continually driven to expand my expertise.
-          </p>
-          <p>
             Currently, I'm delving into the realms of low-level and systems programming, with a keen interest in mastering Rust and C.
           </p>
         </div>} handleFlip={handleFlip} />,
     },
     reft: {
       direction: "Y", content:
-        <FlipCardBody body={<div style={{}}>
+        <FlipCardBody body={<div>
           <h1>rEFT</h1>
 
           <p>
@@ -128,24 +133,58 @@ const Flip: React.FC = () => {
             the tokenization and trading of these property rights. The website is built with NextJS.
           </p>
 
-          <a href='https://github.com/reft-natan-m/reft' className='link'>github</a>
+          <a href='https://github.com/reft-natan-m/reft'>
+            <button className='link'>github</button>
+          </a>
         </div>} handleFlip={handleFlip} borderColor={'#B000B5'} />,
     },
     peppermint: {
       direction: "Y", content:
-        <FlipCardBody body={<button onClick={() => handleFlip('home')}>Back</button>} handleFlip={handleFlip} borderColor={'#10ADED'} />,
+        <FlipCardBody body={<div>
+          <h1>peppermint</h1>
+
+          <p>
+            Peppermint is a comprehensive budgeting application designed to help users manage their finances effectively by tracking expenses,
+            categorizing transactions, and visualizing budgets with intuitive graphs. The application was primarily built using Docker, SvelteKit
+            for the frontend, FastAPI for the backend, and PostgreSQL for database management. As the main developer, I spearheaded the design of
+            the database architecture and the development of both backend and frontend components.
+          </p>
+
+          <a href='https://github.com/NADEE-MJ/peppermint'>
+            <button className='link'>github</button>
+          </a>
+        </div>} handleFlip={handleFlip} borderColor={'#10ADED'} />,
     },
     zsh: {
       direction: "Y", content:
-        <FlipCardBody body={<button onClick={() => handleFlip('home')}>Back</button>} handleFlip={handleFlip} borderColor={'#FFA500'} />,
+        <FlipCardBody body={<div>
+          <h1>zsh</h1>
+
+          <p>
+            I developed a custom zsh shell setup focused on efficiency, featuring essential plugins like powerlevel10k for a dynamic prompt,
+            zsh-autosuggestions for quick command recall, and fzf for enhanced history search. Designed to streamline my workflow across various
+            systems, this setup ensures quick and uniform installation on Arch, Debian, and Ubuntu, allowing me to get up and running seamlessly
+            wherever I work.
+          </p>
+
+          <a href='https://github.com/NADEE-MJ/zsh'>
+            <button className='link'>github</button>
+          </a>
+        </div>} handleFlip={handleFlip} borderColor={'#FFA500'} />,
     },
     contact: {
       direction: "X", content:
-        <FlipCardBody body={<button onClick={() => handleFlip('home')}>Back</button>} handleFlip={handleFlip} borderColor={'#FF0000'} />,
+        <FlipCardBody body={<div>
+          <div className="resume-download-container">
+            <a href="/resume.pdf" download="resume.pdf">
+              &darr; Download Resume
+            </a>
+          </div>
+        </div>} handleFlip={handleFlip} borderColor={'#FF0000'} />,
     },
     skills: {
       direction: "X", content:
-        <FlipCardBody body={<button onClick={() => handleFlip('home')}>Back</button>} handleFlip={handleFlip} borderColor={'#00FF00'} />,
+        <FlipCardBody body={<SkillsGrid />} handleFlip={handleFlip} borderColor={'#00FF00'} />,
     }
   }
 

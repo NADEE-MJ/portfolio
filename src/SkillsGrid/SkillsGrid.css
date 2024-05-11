@@ -1,0 +1,23 @@
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 30px;
+    row-gap: 10px;
+}
+
+.skill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill img {
+    width: 140px;
+    height: auto;
+    transition: 0.3s;
+}
+
+.skill img:hover {
+    transform: scale(1.1);
+}
