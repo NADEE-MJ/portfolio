@@ -149,6 +149,13 @@
     background-color: #257392;
 }
 
+.email-button-link {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+}
+
 .email-button {
     font-size: 20px;
     background-color: transparent;

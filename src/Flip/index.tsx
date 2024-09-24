@@ -200,10 +200,10 @@ const Flip: React.FC = () => {
             <div className='split-download-button'>
               <div className='body-content'>
                 <span>Email:</span>
-                <a href="mailto:nadeem.maida@gmail.com"><button className='email-button'>nadeem.maida@gmail.com</button></a>
+                <a href="mailto:nadeem.maida@gmail.com" className="email-button-link"><button className='email-button'>nadeem.maida@gmail.com</button></a>
                 <br />
                 <span>Phone:</span>
-                <span>(714) 555-1234</span>
+                <span>(949) 421-9330</span>
               </div>
               <div className="resume-download-container">
                 <a href="/resume.pdf" download="resume.pdf">
