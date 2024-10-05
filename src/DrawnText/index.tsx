@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { SVG } from '@svgdotjs/svg.js';
+import { AnimatedTextProps } from '../types';
 
-interface AnimatedTextProps {
-    text: string;
-}
 
 /**
  * AnimatedText component that displays text with a drawing animation.
@@ -32,7 +30,6 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text }) => {
             const length = svgText.length();
 
             // Animate the stroke drawing
-            console.log(length);
             svgText.attr({
                 'stroke-dasharray': length + 80,
                 'stroke-dashoffset': length

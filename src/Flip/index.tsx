@@ -4,14 +4,10 @@ import linkedin from '../assets/linkedin.png';
 import MJ from '../assets/MJ.png';
 import DrawnText from '../DrawnText';
 import './Flip.css';
-import SkillsGrid from '../SkillsGrid';
+import contentJson from '../content.json';
+import { FlipCardProps, ContentNames, FlipCardBodyProps, ContentElements, Content } from '../types';
 
-interface FlipCardProps {
-  frontContent: ReactElement | null;
-  backContent: ReactElement | null;
-  flip: boolean;
-  direction: "X" | "Y";
-}
+const content: Content = contentJson as Content;
 
 /**
  * FlipCard component that displays front and back content on a card that flips on the X or Y axis.
@@ -33,14 +29,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ frontContent, backContent, flip, di
     </div>
   );
 };
-
-type ContentNames = "home" | "reft" | "peppermint" | "zsh" | "contact" | "skills";
-
-interface FlipCardBodyProps {
-  body: ReactElement;
-  borderColor?: string;
-  handleFlip: (contentName: ContentNames) => void;
-}
 
 /**
  * FlipCardBody component that displays the body content of the card.
@@ -78,9 +66,9 @@ const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFl
 
   const projectLinks = (<div className='project-links'>
     <h1>Projects</h1>
-    <button className='link' onClick={() => handleFlip('peppermint')}>peppermint</button>
-    <button className='link' onClick={() => handleFlip('reft')}>rEFT</button>
-    <button className='link' onClick={() => handleFlip('zsh')}>zsh</button>
+    {content.projects.map((project) => (
+      <button className='link' onClick={() => handleFlip(project.button)}>{project.button}</button>
+    ))}
   </div>);
 
   return (
@@ -105,12 +93,7 @@ const FlipCardBody: React.FC<FlipCardBodyProps> = ({ body, borderColor, handleFl
   );
 }
 
-interface ContentElements {
-  [key: string]: {
-    direction: "X" | "Y";
-    content: ReactElement;
-  }
-}
+
 
 /**
  * Flip component that displays a card with front and back content that flips on the X or Y axis.
@@ -128,86 +111,33 @@ const Flip: React.FC = () => {
     setNextContentName(contentName);
   };
 
-  const contentElements: ContentElements = {
+  const [contentElements, setContentElements] = useState<ContentElements>({
     home: {
       direction: "Y", content:
         <FlipCardBody body={<div className="body-content">
-          <DrawnText text={"WELCOME!"} />
+          <DrawnText text={content.home.welcomeText} />
           <p>
-            Hello! I'm Nadeem Maida, a full-stack web developer based in Southern California.
-            My experience spans various web technology stacks, and I'm continually driven to expand my expertise.
-            Currently, I'm delving into the realms of low-level and systems programming, with a keen interest in mastering Rust and C.
+            {content.home.introduction}
           </p>
         </div>} handleFlip={handleFlip} />,
-    },
-    reft: {
-      direction: "Y", content:
-        <FlipCardBody body={<div className="body-content">
-          <h1>rEFT</h1>
-
-          <p>
-            The name rEFT stands for Real Estate Fungible Token. We developed a platform called rEFT to simplify real estate investment by allowing
-            property owners to convert their assets into fungible tokens, using the Ethereum blockchain for secure transactions. Each token
-            represents a share of ownership in the property. I designed the smart contract, using Hardhat, Solidity, and OpenZepplin, that manages
-            the tokenization and trading of these property rights. The website is built with NextJS.
-          </p>
-
-          <a href='https://github.com/reft-natan-m/reft'>
-            <button className='link'>github</button>
-          </a>
-        </div>} handleFlip={handleFlip} borderColor={'#B000B5'} />,
-    },
-    peppermint: {
-      direction: "Y", content:
-        <FlipCardBody body={<div className="body-content">
-          <h1>peppermint</h1>
-
-          <p>
-            Peppermint is a comprehensive budgeting application designed to help users manage their finances effectively by tracking expenses,
-            categorizing transactions, and visualizing budgets with intuitive graphs. The application was primarily built using Docker, SvelteKit
-            for the frontend, FastAPI for the backend, and PostgreSQL for database management. As the main developer, I spearheaded the design of
-            the database architecture and the development of both backend and frontend components.
-          </p>
-
-          <a href='https://github.com/NADEE-MJ/peppermint'>
-            <button className='link'>github</button>
-          </a>
-        </div>} handleFlip={handleFlip} borderColor={'#9E091E'} />,
-    },
-    zsh: {
-      direction: "Y", content:
-        <FlipCardBody body={<div className="body-content">
-          <h1>zsh</h1>
-
-          <p>
-            I developed a custom zsh shell setup focused on efficiency, featuring essential plugins like powerlevel10k for a dynamic prompt,
-            zsh-autosuggestions for quick command recall, and fzf for enhanced history search. Designed to streamline my workflow across various
-            systems, this setup ensures quick and uniform installation on Arch, Debian, and Ubuntu, allowing me to get up and running seamlessly
-            wherever I work.
-          </p>
-
-          <a href='https://github.com/NADEE-MJ/zsh'>
-            <button className='link'>github</button>
-          </a>
-        </div>} handleFlip={handleFlip} borderColor={'#FFA500'} />,
     },
     contact: {
       direction: "X", content:
         <FlipCardBody body={
           <div className="body-content">
-            <h1>Contact Me</h1>
-            <p>If you're interested in working together or just want to say hi, don't hesitate to reach out!</p>
+            <h1>{content.contact.heading}</h1>
+            <p>{content.contact.message}</p>
             <div className='split-download-button'>
               <div className='body-content'>
                 <span>Email:</span>
-                <a href="mailto:nadeem.maida@gmail.com" className="email-button-link"><button className='email-button'>nadeem.maida@gmail.com</button></a>
+                <a href="mailto:nadeem.maida@gmail.com" className="email-button-link"><button className='email-button'>{content.contact.email}</button></a>
                 <br />
                 <span>Phone:</span>
-                <span>(949) 421-9330</span>
+                <span>{content.contact.phone}</span>
               </div>
               <div className="resume-download-container">
-                <a href="/resume.pdf" download="resume.pdf">
-                  &darr; Download Resume
+                <a href={content.contact.resumeLink} download={content.contact.resumeFileName}>
+                  {content.contact.downloadText}
                 </a>
               </div>
             </div>
@@ -215,9 +145,44 @@ const Flip: React.FC = () => {
     },
     skills: {
       direction: "X", content:
-        <FlipCardBody body={<SkillsGrid />} handleFlip={handleFlip} borderColor={'#111135'} />,
+        <FlipCardBody body={<div className="skills-grid">
+          {content.skills.map((skill) => (
+            <div className="skill" key={skill.name}>
+              <a href={skill.link}>
+                <img src={skill.image} alt={skill.name} />
+              </a>
+            </div>
+          ))}
+        </div>} handleFlip={handleFlip} borderColor={'#111135'} />,
     }
-  }
+  });
+
+  useEffect(() => {
+    const updatedContentElements = { ...contentElements }; // Create a copy
+
+    content.projects.forEach((project) => {
+      updatedContentElements[project.button] = {
+        direction: "Y",
+        content: (
+          <FlipCardBody
+            body={
+              <div className="body-content">
+                <h1>{project.title}</h1>
+                <p>{project.description}</p>
+                <a href={project.githubLink}>
+                  <button className="link">github</button>
+                </a>
+              </div>
+            }
+            handleFlip={handleFlip}
+            borderColor={project.borderColor}
+          />
+        ),
+      };
+    });
+
+    setContentElements(updatedContentElements);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (flip) {
@@ -227,7 +192,6 @@ const Flip: React.FC = () => {
       setFrontContent(contentElements[nextContentName].content);
     }
   }, [flip, nextContentName]); // eslint-disable-line react-hooks/exhaustive-deps
-
 
   return (
     <div className='page-container'>

@@ -1,0 +1,87 @@
+{
+    "home": {
+        "welcomeText": "WELCOME!",
+        "introduction": "Hello! I'm Nadeem Maida, a full-stack web developer based in Southern California. My experience spans various web technology stacks, and I'm continually driven to expand my expertise. Currently, I'm delving into the realms of low-level and systems programming, with a keen interest in mastering Rust and C."
+    },
+    "projects": [
+        {
+            "title": "rEFT",
+            "button": "rEFT",
+            "description": "The name rEFT stands for Real Estate Fungible Token. We developed a platform called rEFT to simplify real estate investment by allowing property owners to convert their assets into fungible tokens, using the Ethereum blockchain for secure transactions. Each token represents a share of ownership in the property. I designed the smart contract, using Hardhat, Solidity, and OpenZeppelin, that manages the tokenization and trading of these property rights. The website is built with NextJS.",
+            "githubLink": "https://github.com/reft-natan-m/reft",
+            "borderColor": "#B000B5"
+        },
+        {
+            "title": "Peppermint",
+            "button": "peppermint",
+            "description": "Peppermint is a comprehensive budgeting application designed to help users manage their finances effectively by tracking expenses, categorizing transactions, and visualizing budgets with intuitive graphs. The application was primarily built using Docker, SvelteKit for the frontend, FastAPI for the backend, and PostgreSQL for database management. As the main developer, I spearheaded the design of the database architecture and the development of both backend and frontend components.",
+            "githubLink": "https://github.com/NADEE-MJ/peppermint",
+            "borderColor": "#9E091E"
+        },
+        {
+            "title": "Custom ZSH Setup",
+            "button": "zsh",
+            "description": "I developed a custom zsh shell setup focused on efficiency, featuring essential plugins like powerlevel10k for a dynamic prompt, zsh-autosuggestions for quick command recall, and fzf for enhanced history search. Designed to streamline my workflow across various systems, this setup ensures quick and uniform installation on Arch, Debian, and Ubuntu, allowing me to get up and running seamlessly wherever I work.",
+            "githubLink": "https://github.com/NADEE-MJ/zsh",
+            "borderColor": "#FFA500"
+        }
+    ],
+    "contact": {
+        "heading": "Contact Me",
+        "message": "If you're interested in working together or just want to say hi, don't hesitate to reach out!",
+        "email": "nadeem.maida@gmail.com",
+        "phone": "(949) 421-9330",
+        "resumeLink": "/resume.pdf",
+        "resumeFileName": "Nadeem_Maida_Resume.pdf",
+        "downloadText": "↓ Download Resume"
+    },
+    "accounts": {
+        "github": "https://github.com/NADEE-MJ",
+        "linkedin": "https://www.linkedin.com/in/nadeem-maida/"
+    },
+    "footer": {
+        "copyright": "© 2024 Nadeem Maida"
+    },
+    "skills": [
+        {
+            "name": "Python",
+            "image": "images/python.png",
+            "link": "https://www.python.org/"
+        },
+        {
+            "name": "SST",
+            "image": "images/sst.png",
+            "link": "https://sst.dev/"
+        },
+        {
+            "name": "Laravel",
+            "image": "images/laravel.png",
+            "link": "https://laravel.com/"
+        },
+        {
+            "name": "React",
+            "image": "images/react.png",
+            "link": "https://reactjs.org/"
+        },
+        {
+            "name": "Docker",
+            "image": "images/docker.png",
+            "link": "https://www.docker.com/"
+        },
+        {
+            "name": "Svelte",
+            "image": "images/svelte.png",
+            "link": "https://svelte.dev/"
+        },
+        {
+            "name": "MariaDB",
+            "image": "images/mariadb.png",
+            "link": "https://mariadb.org/"
+        },
+        {
+            "name": "FastAPI",
+            "image": "images/fastapi.png",
+            "link": "https://fastapi.tiangolo.com/"
+        }
+    ]
+}

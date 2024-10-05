@@ -1,0 +1,197 @@
+/******************************************************
+* Containers
+*******************************************************/
+
+.mobile-site {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/******************************************************
+* header
+*******************************************************/
+.mobile-welcome-text{
+    color: #ffffff;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.header {
+    width: 100%;
+    padding: 20px;
+    background-color: #1f2228;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.nav-link:hover {
+    background-color: #3a3f47;
+    border-radius: 5px;
+}
+
+/******************************************************
+* Section
+*******************************************************/
+.section {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+.home-section p {
+    text-align: center;
+}
+
+/******************************************************
+* Projects
+*******************************************************/
+.projects-section .project {
+    border-left: 5px solid;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.project h2 {
+    margin-top: 0;
+}
+
+.github-link {
+    color: #10ADED;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.github-link:hover {
+    text-decoration: underline;
+}
+
+/******************************************************
+* Skills
+*******************************************************/
+.mobile-skills-section {
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-skill {
+    margin-bottom: 10px;
+}
+
+.mobile-skill img {
+    width: 140px;
+    height: auto;
+    transition: 0.3s;
+}
+
+.mobile-skill img:hover {
+    transform: scale(1.1);
+}
+
+/* grid should take up all horizontal space available down to 1 column */
+.mobile-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+/******************************************************
+* Contact
+*******************************************************/
+.contact-section .contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-item span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.resume-download a {
+    padding: 10px 20px;
+    background-color: #10ADED;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.resume-download a:hover {
+    background-color: #257392;
+}
+
+/******************************************************
+* Footer
+*******************************************************/
+.footer {
+    width: 100%;
+    padding: 20px;
+    background-color: #1f2228;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    margin: 0 10px;
+}
+
+.social-icon {
+    width: 30px;
+    height: auto;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@media (min-width: 600px) {
+    .nav-links {
+        width: 50%;
+    }
+
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 0;
+    }
+
+    .home-section p {
+        text-align: left;
+    }
+}
