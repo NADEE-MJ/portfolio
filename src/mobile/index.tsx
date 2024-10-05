@@ -24,12 +24,12 @@ const Mobile: React.FC = () => {
 const Header: React.FC = () => (
     <header className="mobile-header">
         <img className="mobile-logo" src={MJ} alt="MJ" />
-        <nav className="mobile-nav-links">
+        {/* <nav className="mobile-nav-links">
             <a href="#home" className="mobile-nav-link">Home</a>
             <a href="#projects" className="mobile-nav-link">Projects</a>
             <a href="#skills" className="mobile-nav-link">Skills</a>
             <a href="#contact" className="mobile-nav-link">Contact</a>
-        </nav>
+        </nav> */}
     </header>
 );
 
