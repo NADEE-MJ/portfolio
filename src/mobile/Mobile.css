@@ -1,29 +1,28 @@
 /******************************************************
 * Containers
 *******************************************************/
-
 .mobile-site {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
 }
 
 /******************************************************
-* header
+* Header
 *******************************************************/
-.mobile-welcome-text{
+.mobile-welcome-text {
     color: #ffffff;
     font-size: 50px;
     margin-bottom: 20px;
 }
 
-.header {
-    width: 100%;
+/* take up the whole width */
+.mobile-header {
     padding: 20px;
     background-color: #1f2228;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
 }
 
 .mobile-logo {
@@ -32,20 +31,20 @@
     margin-bottom: 10px;
 }
 
-.nav-links {
+.mobile-nav-links {
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
 
-.nav-link {
+.mobile-nav-link {
     color: #ffffff;
     text-decoration: none;
     font-size: 18px;
     padding: 10px;
 }
 
-.nav-link:hover {
+.mobile-nav-link:hover {
     background-color: #3a3f47;
     border-radius: 5px;
 }
@@ -53,36 +52,36 @@
 /******************************************************
 * Section
 *******************************************************/
-.section {
+.mobile-section {
     width: 90%;
     max-width: 600px;
     margin: 20px 0;
 }
 
-.home-section p {
+.mobile-home-section p {
     text-align: center;
 }
 
 /******************************************************
 * Projects
 *******************************************************/
-.projects-section .project {
+.mobile-projects-section .mobile-project {
     border-left: 5px solid;
     padding: 10px 15px;
     margin-bottom: 20px;
 }
 
-.project h2 {
+.mobile-project h2 {
     margin-top: 0;
 }
 
-.github-link {
+.mobile-github-link {
     color: #10ADED;
     text-decoration: none;
     font-weight: bold;
 }
 
-.github-link:hover {
+.mobile-github-link:hover {
     text-decoration: underline;
 }
 
@@ -108,7 +107,7 @@
     transform: scale(1.1);
 }
 
-/* grid should take up all horizontal space available down to 1 column */
+/* Grid should take up all horizontal space available down to 1 column */
 .mobile-skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -118,22 +117,22 @@
 /******************************************************
 * Contact
 *******************************************************/
-.contact-section .contact-info {
+.mobile-contact-section .mobile-contact-info {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-.contact-item {
+.mobile-contact-item {
     margin-bottom: 10px;
 }
 
-.contact-item span {
+.mobile-contact-item span {
     font-weight: bold;
     margin-right: 5px;
 }
 
-.resume-download a {
+.mobile-resume-download a {
     padding: 10px 20px;
     background-color: #10ADED;
     color: white;
@@ -141,14 +140,14 @@
     text-decoration: none;
 }
 
-.resume-download a:hover {
+.mobile-resume-download a:hover {
     background-color: #257392;
 }
 
 /******************************************************
 * Footer
 *******************************************************/
-.footer {
+.mobile-footer {
     width: 100%;
     padding: 20px;
     background-color: #1f2228;
@@ -157,41 +156,44 @@
     align-items: center;
 }
 
-.social-links {
+.mobile-social-links {
     display: flex;
     margin-bottom: 10px;
 }
 
-.social-links a {
+.mobile-social-links a {
     margin: 0 10px;
 }
 
-.social-icon {
+.mobile-social-icon {
     width: 30px;
     height: auto;
 }
 
-.footer p {
+.mobile-footer p {
     margin: 0;
     font-size: 14px;
 }
 
+/******************************************************
+* Media Query for Larger Screens
+*******************************************************/
 @media (min-width: 600px) {
-    .nav-links {
+    .mobile-nav-links {
         width: 50%;
     }
 
-    .header {
+    .mobile-header {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
 
-    .logo {
+    .mobile-logo {
         margin-bottom: 0;
     }
 
-    .home-section p {
+    .mobile-home-section p {
         text-align: left;
     }
 }

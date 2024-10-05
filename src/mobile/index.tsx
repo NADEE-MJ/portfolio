@@ -22,26 +22,26 @@ const Mobile: React.FC = () => {
 };
 
 const Header: React.FC = () => (
-    <header className="header">
-        <img className='mobile-logo' src={MJ} alt="MJ" />
-        <nav className="nav-links">
-            <a href="#home" className="nav-link">Home</a>
-            <a href="#projects" className="nav-link">Projects</a>
-            <a href="#skills" className="nav-link">Skills</a>
-            <a href="#contact" className="nav-link">Contact</a>
+    <header className="mobile-header">
+        <img className="mobile-logo" src={MJ} alt="MJ" />
+        <nav className="mobile-nav-links">
+            <a href="#home" className="mobile-nav-link">Home</a>
+            <a href="#projects" className="mobile-nav-link">Projects</a>
+            <a href="#skills" className="mobile-nav-link">Skills</a>
+            <a href="#contact" className="mobile-nav-link">Contact</a>
         </nav>
     </header>
 );
 
 const HomeSection: React.FC = () => (
-    <section id="home" className="section home-section">
-        <h1 className='mobile-welcome-text'>{content.home.welcomeText}</h1>
+    <section id="home" className="mobile-section mobile-home-section">
+        <h1 className="mobile-welcome-text">{content.home.welcomeText}</h1>
         <p>{content.home.introduction}</p>
     </section>
 );
 
 const ProjectsSection: React.FC = () => (
-    <section id="projects" className="section projects-section">
+    <section id="projects" className="mobile-section mobile-projects-section">
         <h1>Projects</h1>
         {content.projects.map((project, index) => (
             <Project
@@ -56,17 +56,17 @@ const ProjectsSection: React.FC = () => (
 );
 
 const Project: React.FC<ProjectProps> = ({ title, description, githubLink, borderColor }) => (
-    <div className="project" style={{ borderLeftColor: borderColor }}>
+    <div className="mobile-project" style={{ borderLeftColor: borderColor }}>
         <h2>{title}</h2>
         <p>{description}</p>
-        <a href={githubLink} className="github-link" target="_blank" rel="noopener noreferrer">
+        <a href={githubLink} className="mobile-github-link" target="_blank" rel="noopener noreferrer">
             View on GitHub
         </a>
     </div>
 );
 
 const SkillsSection: React.FC = () => (
-    <section id="skills" className="section mobile-skills-section">
+    <section id="skills" className="mobile-section mobile-skills-section">
         <h1>Skills</h1>
         <div className="mobile-skills-grid">
             {content.skills.map((skill) => (
@@ -81,20 +81,20 @@ const SkillsSection: React.FC = () => (
 );
 
 const ContactSection: React.FC = () => (
-    <section id="contact" className="section contact-section">
+    <section id="contact" className="mobile-section mobile-contact-section">
         <h1>{content.contact.heading}</h1>
         <p>{content.contact.message}</p>
-        <div className="contact-info">
-            <div className="contact-item">
+        <div className="mobile-contact-info">
+            <div className="mobile-contact-item">
                 <span>Email:</span>
                 <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
             </div>
-            <div className="contact-item">
+            <div className="mobile-contact-item">
                 <span>Phone:</span>
                 <span>{content.contact.phone}</span>
             </div>
         </div>
-        <div className="resume-download">
+        <div className="mobile-resume-download">
             <a href={content.contact.resumeLink} download={content.contact.resumeFileName}>
                 {content.contact.downloadText}
             </a>
@@ -103,13 +103,13 @@ const ContactSection: React.FC = () => (
 );
 
 const Footer: React.FC = () => (
-    <footer className="footer">
-        <nav className="social-links">
+    <footer className="mobile-footer">
+        <nav className="mobile-social-links">
             <a href={content.accounts.linkedin} target="_blank" rel="noopener noreferrer">
-                <img className='social-icon' src={linkedin} alt="LinkedIn" />
+                <img className="mobile-social-icon" src={linkedin} alt="LinkedIn" />
             </a>
             <a href={content.accounts.github} target="_blank" rel="noopener noreferrer">
-                <img className='social-icon' src={github} alt="GitHub" />
+                <img className="mobile-social-icon" src={github} alt="GitHub" />
             </a>
         </nav>
         <p>{content.footer.copyright}</p>
