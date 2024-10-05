@@ -169,6 +169,13 @@
 .mobile-social-icon {
     width: 30px;
     height: auto;
+    transition: 0.3s;
+}
+
+/* hover effect */
+
+.mobile-social-icon:hover {
+    transform: scale(1.2);
 }
 
 .mobile-footer p {
@@ -179,7 +186,7 @@
 /******************************************************
 * Media Query for Larger Screens
 *******************************************************/
-@media (min-width: 600px) {
+/* @media (min-width: 600px) {
     .mobile-nav-links {
         width: 50%;
     }
@@ -196,5 +203,4 @@
 
     .mobile-home-section p {
         text-align: left;
-    }
-}
+    } */
